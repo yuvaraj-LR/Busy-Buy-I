@@ -151,6 +151,11 @@ button {
   padding-inline: 36px;
 }
 
+.home_logo {
+  width: 150px;
+  object-fit: cover;
+}
+
 .home_head {
   margin-bottom: 22px;
 }
@@ -191,4 +196,18 @@ button {
 
 .fa-star {
   color: #ffd43b;
+}
+
+/* Login Styles */
+.login_logo {
+  width: 200px;
+  object-fit: cover;
+}
+
+.login_redirect {
+  color: blue;
+}
+
+.login_redirect:hover {
+  text-decoration: underline;
 }
