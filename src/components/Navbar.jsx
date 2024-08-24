@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Navbar = () => {
     return(
@@ -30,9 +30,7 @@ const Navbar = () => {
                                 <button className="btn btn-secondary" type="submit">Search</button>
                             </form>
 
-                            <form className="d-flex mx-2" role="search">
-                                <button className="btn btn-primary" type="submit">Login</button>
-                            </form>
+                            <Link className="btn btn-primary" to="/signin" >Login</Link>
                         </div>
                     </div>
                 </nav>
