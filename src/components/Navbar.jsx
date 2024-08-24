@@ -5,7 +5,7 @@ const Navbar = () => {
         <>
             <header>
                 <nav className="navbar navbar-expand-lg navbar-bg">
-                    <div className="container-fluid navbar_bg">
+                    <div className="container-fluid wrapper">
                         <div className="navbar-brand">
                             <NavLink to="/" className="brand-title">Busy Buy</NavLink>
                         </div>
@@ -27,11 +27,11 @@ const Navbar = () => {
                             </ul>
                             <form className="d-flex mx-2" role="search">
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-secondary" type="submit">Search</button>
+                                <button className="btn btn-secondary" type="submit">Search</button>
                             </form>
 
                             <form className="d-flex mx-2" role="search">
-                                <button className="btn btn-outline-primary" type="submit">Login</button>
+                                <button className="btn btn-primary" type="submit">Login</button>
                             </form>
                         </div>
                     </div>
