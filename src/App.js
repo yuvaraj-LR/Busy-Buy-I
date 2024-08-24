@@ -5,12 +5,12 @@ import {
 } from "react-router-dom";
 
 import NotFound from "./pages/notFound";
-import Navbar from "./components/Navbar"
 import Home from "./pages/home";
 import Order from "./pages/order";
 import Cart from "./pages/cart";
 import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
+import Navbar from "./components/Navbar";
 
 
 function App() {
