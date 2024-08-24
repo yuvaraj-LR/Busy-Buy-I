@@ -26,6 +26,11 @@ button {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+td, th {
+  text-align: center;
+  vertical-align: middle;
+}
+
 /* Default style class */
 .lighter {
   font-weight: 200;
@@ -210,4 +215,10 @@ button {
 
 .login_redirect:hover {
   text-decoration: underline;
+}
+
+/* Cart Styles */
+.cart-img {
+  width: 100px;
+  object-fit: cover;
 }
