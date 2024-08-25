@@ -43,7 +43,7 @@ const LoginContext = ({children}) => {
             setIsUserLoggedIn(true);
 
             // Redirect to Home.
-            window.history.back().back();
+            window.history.go(-2);
         } catch (error) {
             if(error.code === "auth/invalid-email" || error.code === "auth/email-already-in-use") {
                 toast.error("This email is already in use by another account.")

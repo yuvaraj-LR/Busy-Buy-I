@@ -38,9 +38,8 @@ function App() {
     <ProductContext>
       <LoginContext>
         <div className="app">
-          <RouterProvider router={router} >
-            <ToastContainer limit={3} theme="light" />
-          </RouterProvider>
+          <RouterProvider router={router} />
+          <ToastContainer limit={3} theme="light" />
         </div>
       </LoginContext>
     </ProductContext>
