@@ -1,6 +1,6 @@
 const HomeCard = (data) => {
     const {title, price, description, image, rating} = data.data;
-    const {cart, setCart, itemAdded, setItemAdded} = useProductContextHook();
+    // const {cart, setCart, itemAdded, setItemAdded} = useProductContextHook();
 
     return(
         <>

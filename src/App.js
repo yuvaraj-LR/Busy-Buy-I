@@ -3,6 +3,8 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import NotFound from "./pages/notFound";
 import Home from "./pages/home";
@@ -23,21 +25,11 @@ function App() {
       errorElement: <NotFound />,
       element: <Navbar />,
       children: [
-        {
-          index: true, element: <Home />
-        },
-        {
-          path: "/order", element: <Order />
-        },
-        {
-          path: "/cart", element: <Cart />
-        },
-        {
-          path: "/signup", element: <SignUp />
-        },
-        {
-          path: "/signin", element: <SignIn />
-        }
+        { index: true, element: <Home /> },
+        { path: "/order", element: <Order /> },
+        { path: "/cart", element: <Cart /> },
+        { path: "/signup", element: <SignUp /> },
+        { path: "/signin", element: <SignIn /> }
       ]
     }
   ]);
@@ -46,7 +38,9 @@ function App() {
     <ProductContext>
       <LoginContext>
         <div className="app">
-          <RouterProvider router={router} />
+          <RouterProvider router={router} >
+            <ToastContainer limit={3} theme="light" />
+          </RouterProvider>
         </div>
       </LoginContext>
     </ProductContext>

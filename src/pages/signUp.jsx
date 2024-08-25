@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useLoginContextHook } from "../context/login.context";
 
 const SignUp = () => {
-    const { name, setName, email, setEmail, password, setPassword, handleSignUp } = useLoginContextHook();
+    const { setName, setEmail, setPassword, handleSignUp } = useLoginContextHook();
 
     return(
         <>
@@ -13,7 +13,7 @@ const SignUp = () => {
                             <img src="/logo-black.png" alt="Logo" className="login_logo"/>
                         </div>
                         <p className="text-muted pb-4">Create your account to start using our platform and services.</p>
-                        <form onSubmit={() => handleSignUp()}>
+                        <form onSubmit={(e) => handleSignUp(e)}>
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Name</label>
                                 <div className="input-group">
@@ -23,7 +23,7 @@ const SignUp = () => {
                                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" className="form-control" id="name" placeholder="Your Name" autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <input type="text" className="form-control" id="name" placeholder="Your Name" autoComplete="off" onChange={(e) => setName(e.target.value)} />
                                 </div>
                             </div>
                             <div className="mb-3">
@@ -35,7 +35,7 @@ const SignUp = () => {
                                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                         </svg>
                                     </span>
-                                    <input type="email" className="form-control" id="email" placeholder="name@company.com" autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                    <input type="email" className="form-control" id="email" placeholder="name@company.com" autoComplete="off" onChange={(e) => setEmail(e.target.value)} />
                                 </div>
                             </div>
                             <div className="mb-4">
@@ -49,7 +49,7 @@ const SignUp = () => {
                                             <path d="m8.5 10 7 4"></path>
                                         </svg>
                                     </span>
-                                    <input type="password" className="form-control" id="password" placeholder="••••••••••" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                    <input type="password" className="form-control" id="password" placeholder="••••••••••" autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} />
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary w-100 mb-4">Sign Up</button>
@@ -62,11 +62,11 @@ const SignUp = () => {
                         </div>
                         <div className="d-flex justify-content-center gap-2">
                             <button type="button" className="btn btn-dark d-flex align-items-center gap-2 w-100">
-                                <i class="fa-brands fa-google"></i>
+                                <i className="fa-brands fa-google"></i>
                                 <span className="mx-auto">Google</span>
                             </button>
                             <button type="button" className="btn btn-info d-flex align-items-center gap-2 w-100">
-                                <i class="fa-brands fa-facebook fa-lg"></i>
+                                <i className="fa-brands fa-facebook fa-lg"></i>
                                 <span className="mx-auto">Facebook</span>
                             </button>
                         </div>

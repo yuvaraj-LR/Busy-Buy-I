@@ -1,6 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { useLoginContextHook } from "../context/login.context";
 
 const Navbar = () => {
+
+    const {isUserLoggedIn, handleLogout} = useLoginContextHook();
+
     return(
         <>
             <header>
@@ -20,10 +24,10 @@ const Navbar = () => {
                                 <li className="nav-item mx-2">
                                     <NavLink className={ ({isActive}) => isActive ? "current-nav" : null } to="/">Home</NavLink>
                                 </li>
-                                <li className="nav-item mx-2">
+                                <li className={`nav-item mx-2 ${!isUserLoggedIn ? "hidden" : ""}`}>
                                     <NavLink className={ ({isActive}) => isActive ? "current-nav" : null } to="/order">Order</NavLink>
                                 </li>
-                                <li className="nav-item mx-2">
+                                <li className={`nav-item mx-2 ${!isUserLoggedIn ? "hidden" : ""}`}>
                                     <NavLink className={ ({isActive}) => isActive ? "current-nav" : null } to="/cart">Cart</NavLink>
                                 </li>
                             </ul>
@@ -32,7 +36,7 @@ const Navbar = () => {
                                 <button className="btn btn-secondary" type="submit">Search</button>
                             </form>
 
-                            <Link className="btn btn-primary" to="/signin" >Login</Link>
+                            {!isUserLoggedIn ? <Link className="btn btn-primary" to="/signin">Login</Link> : <button className="btn btn-outline-danger" onClick={() => handleLogout()}>Logout</button>}
                         </div>
                     </div>
                 </nav>
