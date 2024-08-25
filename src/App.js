@@ -11,6 +11,7 @@ import Cart from "./pages/cart";
 import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
 import Navbar from "./components/Navbar";
+import ProductContext from "./context/home.context";
 
 
 function App() {
@@ -41,9 +42,11 @@ function App() {
   ]);
 
   return (
-    <div className="app">
-      <RouterProvider router={router} />
-    </div>
+    <ProductContext>
+      <div className="app">
+        <RouterProvider router={router} />
+      </div>
+    </ProductContext>
   );
 }
 

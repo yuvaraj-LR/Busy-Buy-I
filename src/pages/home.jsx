@@ -2,6 +2,7 @@ import Filter from "../components/Filter";
 import HomeList from "../components/HomeList";
 
 const Home = () => {
+
     return(
         <>
             <div className="my-4 wrapper">
