@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
+import { useLoginContextHook } from "../context/login.context";
+import { useProductContextHook } from "../context/product.context";
+
 const HomeCard = (data) => {
-    const {title, price, description, image, rating} = data.data;
-    // const {cart, setCart, itemAdded, setItemAdded} = useProductContextHook();
+    const { title, price, description, image, rating } = data.data;
+    const { isUserLoggedIn } = useLoginContextHook();
+    const { addCart } = useProductContextHook();
 
     return(
         <>
@@ -13,10 +18,11 @@ const HomeCard = (data) => {
                         <h2>&#x20b9;{price}</h2>   
                         <div className="flex flex_center card-rating">
                             <span><i className="fa-solid fa-star"></i></span>
-                            <span className="">{rating.rate}</span>
+                            <span className="">{rating.rate} / 5</span>
                         </div>
                     </div>
-                    <button className="w-100 btn btn-primary">Add To Cart</button>
+
+                    {!isUserLoggedIn ? <Link className="w-100 btn btn-primary" to="/signin">Add To Cart</Link> : <button className="w-100 btn btn-primary" onClick={() => addCart(data.data)}>Add To Cart</button>}
                 </div>
             </div>
         </>

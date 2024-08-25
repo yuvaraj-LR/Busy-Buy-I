@@ -13,9 +13,8 @@ import Cart from "./pages/cart";
 import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
 import Navbar from "./components/Navbar";
-import ProductContext from "./context/home.context";
+import ProductContext from "./context/product.context";
 import LoginContext from "./context/login.context";
-
 
 function App() {
 
