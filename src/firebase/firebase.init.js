@@ -2,15 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCmf6dglKizq_tpGeFwOeP0vx9tHW96we0",
-    authDomain: "blogging-application-c83f0.firebaseapp.com",
-    projectId: "blogging-application-c83f0",
-    storageBucket: "blogging-application-c83f0.appspot.com",
-    messagingSenderId: "169566354002",
-    appId: "1:169566354002:web:2f37dedc61716eb517fd8b"
+    apiKey: "AIzaSyCYPO84zL18gOy7pQgejkV0Qy8UBah4fr0",
+    authDomain: "busy-buy-cca61.firebaseapp.com",
+    projectId: "busy-buy-cca61",
+    storageBucket: "busy-buy-cca61.appspot.com",
+    messagingSenderId: "901744115452",
+    appId: "1:901744115452:web:e815729a200d99cd016179"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-

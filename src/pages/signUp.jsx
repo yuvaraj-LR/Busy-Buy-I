@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useLoginContextHook } from "../context/login.context";
 
 const SignUp = () => {
+    const { name, setName, email, setEmail, password, setPassword, handleSignUp } = useLoginContextHook();
+
     return(
         <>
             <div className="container my-5">
@@ -10,7 +13,7 @@ const SignUp = () => {
                             <img src="/logo-black.png" alt="Logo" className="login_logo"/>
                         </div>
                         <p className="text-muted pb-4">Create your account to start using our platform and services.</p>
-                        <form>
+                        <form onSubmit={() => handleSignUp()}>
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Name</label>
                                 <div className="input-group">
@@ -20,7 +23,7 @@ const SignUp = () => {
                                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" className="form-control" id="name" placeholder="Your Name" autoComplete="off" />
+                                    <input type="text" className="form-control" id="name" placeholder="Your Name" autoComplete="off" value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
                             </div>
                             <div className="mb-3">
@@ -32,7 +35,7 @@ const SignUp = () => {
                                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                         </svg>
                                     </span>
-                                    <input type="email" className="form-control" id="email" placeholder="name@company.com" autoComplete="off" />
+                                    <input type="email" className="form-control" id="email" placeholder="name@company.com" autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} />
                                 </div>
                             </div>
                             <div className="mb-4">
@@ -46,7 +49,7 @@ const SignUp = () => {
                                             <path d="m8.5 10 7 4"></path>
                                         </svg>
                                     </span>
-                                    <input type="password" className="form-control" id="password" placeholder="••••••••••" autoComplete="new-password" />
+                                    <input type="password" className="form-control" id="password" placeholder="••••••••••" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary w-100 mb-4">Sign Up</button>

@@ -12,6 +12,7 @@ import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
 import Navbar from "./components/Navbar";
 import ProductContext from "./context/home.context";
+import LoginContext from "./context/login.context";
 
 
 function App() {
@@ -43,9 +44,11 @@ function App() {
 
   return (
     <ProductContext>
-      <div className="app">
-        <RouterProvider router={router} />
-      </div>
+      <LoginContext>
+        <div className="app">
+          <RouterProvider router={router} />
+        </div>
+      </LoginContext>
     </ProductContext>
   );
 }

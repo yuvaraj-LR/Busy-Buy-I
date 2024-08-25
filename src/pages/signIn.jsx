@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useLoginContextHook } from "../context/login.context";
 
 const SignIn = () => {
+
+    const { email, setEmail, password, setPassword } = useLoginContextHook();
+
     return(
         <div className="container my-5">
             <div className="row justify-content-center">
@@ -19,7 +23,7 @@ const SignIn = () => {
                                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                     </svg>
                                 </span>
-                                <input type="email" className="form-control" id="email" placeholder="name@company.com" autoComplete="off" />
+                                <input type="email" className="form-control" id="email" placeholder="name@company.com" autoComplete="off" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                         </div>
                         <div className="mb-4">
@@ -33,7 +37,7 @@ const SignIn = () => {
                                         <path d="m8.5 10 7 4"></path>
                                     </svg>
                                 </span>
-                                <input type="password" className="form-control" id="password" placeholder="••••••••••" autoComplete="new-password" />
+                                <input type="password" className="form-control" id="password" placeholder="••••••••••" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary w-100 mb-4">Sign In</button>

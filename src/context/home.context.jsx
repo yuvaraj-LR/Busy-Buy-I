@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const productContext = createContext();
 
-const useCustomContextHook = () => {
+const useProductContextHook = () => {
     const value = useContext(productContext);
     return value;
 }
@@ -18,5 +18,5 @@ const ProductContext = ({children}) => {
     )
 }
 
-export {productContext, useCustomContextHook};
+export {productContext, useProductContextHook};
 export default ProductContext;
