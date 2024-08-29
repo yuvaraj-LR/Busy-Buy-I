@@ -181,7 +181,7 @@ td, th {
   height: 250px;
   margin: auto;
   padding: 16px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .card-title {
@@ -220,5 +220,5 @@ td, th {
 /* Cart Styles */
 .cart-img {
   width: 100px;
-  object-fit: cover;
+  object-fit: contain;
 }

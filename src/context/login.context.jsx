@@ -17,6 +17,7 @@ const LoginContext = ({children}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [userId, setUserId] = useState('')
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -28,11 +29,18 @@ const LoginContext = ({children}) => {
 
             // Fire-store storage.
             if(user) {
-                await setDoc(doc(db, "Users", user.uid), {
-                    name: name,
-                    email: email,
-                    password: password
+                await setDoc(doc(db, "BusyBuy", user.uid), {
+                    userdata: {
+                        uid: user.uid,
+                        name: name,
+                        email: email,
+                        password: password
+                    },
+                    cartItems: [],
+                    orderedItems: [] 
                 })
+
+                setUserId(user.uid);
             }
             toast.success("User Registered Successfully!");
 
@@ -61,7 +69,9 @@ const LoginContext = ({children}) => {
         e.preventDefault();
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const user = await signInWithEmailAndPassword(auth, email, password);
+            setUserId(user.user.uid);
+
             toast.success("User Logged Successfully!");
 
             setIsUserLoggedIn(true);
@@ -97,7 +107,7 @@ const LoginContext = ({children}) => {
     }
 
     return (
-        <loginContext.Provider value={{name, setName, email, setEmail, password, setPassword, isUserLoggedIn, handleSignUp, handleSignIn, handleLogout }}>
+        <loginContext.Provider value={{ name, setName, email, setEmail, password, setPassword, userId, setUserId, isUserLoggedIn, handleSignUp, handleSignIn, handleLogout }}>
             {children}
         </loginContext.Provider>
     )

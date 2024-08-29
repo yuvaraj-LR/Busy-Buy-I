@@ -4,7 +4,7 @@ import { useProductContextHook } from "../context/product.context";
 
 const HomeCard = (data) => {
     const { title, price, description, image, rating } = data.data;
-    const { isUserLoggedIn } = useLoginContextHook();
+    const { isUserLoggedIn, userId } = useLoginContextHook();
     const { addCart } = useProductContextHook();
 
     return(
@@ -22,7 +22,7 @@ const HomeCard = (data) => {
                         </div>
                     </div>
 
-                    {!isUserLoggedIn ? <Link className="w-100 btn btn-primary" to="/signin">Add To Cart</Link> : <button className="w-100 btn btn-primary" onClick={() => addCart(data.data)}>Add To Cart</button>}
+                    {!isUserLoggedIn ? <Link className="w-100 btn btn-primary" to="/signin">Add To Cart</Link> : <button className="w-100 btn btn-primary" onClick={() => addCart(data.data, userId)}>Add To Cart</button>}
                 </div>
             </div>
         </>
