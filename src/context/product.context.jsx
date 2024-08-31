@@ -56,15 +56,11 @@ const ProductContext = ({children}) => {
             // If product exists, update the count, else add it to the cart
             if (productIndex !== -1) { // Corrected condition
                 updatedCartItem[productIndex].count += 1;
-                toast.success("Item Count Increased.", {
-                    "theme":"colored",
-                });
+                toast("Item Count Increased.");
             } else {
                 data.count = 1;
                 updatedCartItem.push(data);
-                toast.success("Cart Item Added.",{
-                    "theme":"colored",
-                });
+                toast("Cart Item Added.");
             }
         
             // Update the data.
@@ -78,9 +74,38 @@ const ProductContext = ({children}) => {
             toast.error("Cart Item Failed to add.");
         }
     };
+
+    const removeCart = async (data) => {
+        const { userdata, cartItem, orderedItem } = productData;
+        
+        let updatedCartItem = cartItem ? [...cartItem] : [];
+    
+        let productIndex = updatedCartItem.findIndex(item => item?.id === data.id);
+
+        if(productIndex === -1) {
+            toast("No more product.")
+        }
+
+        const product = cartItem[productIndex];
+
+        if(product.count <= 1) {
+            updatedCartItem.splice(productIndex, 1);
+        } else {
+            product.count--;
+        }
+
+        // Update the data.
+        await setDoc(doc(db, "BusyBuy", userdata.uid), {
+            userdata: userdata,
+            cartItem: updatedCartItem,
+            orderedItem: orderedItem || []
+        });
+
+        toast("Product removed from cart.")
+    }
     
     return (
-        <productContext.Provider value={{addCart, productData}}>
+        <productContext.Provider value={{ productData, addCart, removeCart}}>
             {children}
         </productContext.Provider>
     )
