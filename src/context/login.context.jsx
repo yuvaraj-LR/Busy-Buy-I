@@ -50,6 +50,7 @@ const LoginContext = ({children}) => {
                     cartItems: [],
                     orderedItems: [] 
                 });
+                console.log(user, "userDataa....");
 
                 setUserId(user.uid);
 

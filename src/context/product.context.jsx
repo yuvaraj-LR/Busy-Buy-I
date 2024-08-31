@@ -17,16 +17,23 @@ const ProductContext = ({children}) => {
         auth.onAuthStateChanged(async(user) => {
             console.log(user, "userDataa...");
 
-            if(user) {
+            if (user) {
                 const docRef = doc(db, "BusyBuy", user?.uid);
-                const docSnap = await getDoc(docRef);
-    
-                if(docSnap.exists()) {
-                    setProductData(docSnap.data());
-                    console.log(docSnap.data(), "dataa...");
-                } else {
-                    console.log("User is not logged in.");
-                }
+            
+                // Set up a real-time listener using onSnapshot
+                const unsubscribe = onSnapshot(docRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        setProductData(docSnap.data());
+                        console.log(docSnap.data(), "dataa...");
+                    } else {
+                        console.log("No such document!");
+                    }
+                }, (error) => {
+                    console.error("Error fetching document: ", error);
+                });
+            
+                // Remember to clean up the listener when no longer needed
+                return () => unsubscribe();
             }
         });
     };
