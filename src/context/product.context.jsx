@@ -12,6 +12,7 @@ const useProductContextHook = () => {
 
 const ProductContext = ({children}) => {
     const [productData, setProductData] = useState({});
+    const [cartPriceCount, setCartPriceCount] = useState(0);
 
     const fetchUserData = async() => {
         // Check for user login.
@@ -24,8 +25,18 @@ const ProductContext = ({children}) => {
                 // Set up a real-time listener using onSnapshot
                 const unsubscribe = onSnapshot(docRef, (docSnap) => {
                     if (docSnap.exists()) {
-                        setProductData(docSnap.data());
-                        console.log(docSnap.data(), "dataa...");
+
+                        const data = docSnap.data();
+
+                        setProductData(data);
+                        console.log(data, "dataa...");
+
+                        let priceCount = 0;
+                        data.cartItem.forEach(item => {
+                            priceCount += (item.count * item.price)
+                        });
+                        setCartPriceCount(priceCount);
+
                     } else {
                         console.log("No such document!");
                     }
@@ -119,7 +130,7 @@ const ProductContext = ({children}) => {
     }
     
     return (
-        <productContext.Provider value={{ productData, addCart, removeCart, handleClear, handleBuyNow}}>
+        <productContext.Provider value={{ productData, cartPriceCount, addCart, removeCart, handleClear, handleBuyNow}}>
             {children}
         </productContext.Provider>
     )

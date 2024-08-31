@@ -3,7 +3,7 @@ const NotFound = () => {
 
     return(
         <>
-        
+            <h3>Oops! Page Not found.</h3>
         </>
     )
 }

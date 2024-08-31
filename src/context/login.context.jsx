@@ -22,6 +22,7 @@ const LoginContext = ({children}) => {
     // Check for user Login.
     useEffect(() => {
         const accessToken = getCookie("accessToken");
+        console.log(accessToken, "accessToken cookie...");
         
         if (accessToken) {
             setIsUserLoggedIn(true);

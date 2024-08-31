@@ -239,3 +239,10 @@ td, th {
   position: relative;
   bottom: 4px;
 }
+
+.total_count {
+  padding: 1rem 2rem;
+  margin: 1.5rem 0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
