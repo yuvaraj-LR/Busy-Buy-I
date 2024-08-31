@@ -1,8 +1,9 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { auth, db } from "../firebase/firebase.init";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { setCookie, getCookie, removeCookie } from "../api/cookies";
 
 const loginContext = createContext();
 
@@ -17,7 +18,17 @@ const LoginContext = ({children}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-    const [userId, setUserId] = useState('')
+    const [userId, setUserId] = useState('');
+
+    useEffect(() => {
+        const accessToken = getCookie("accessToken");
+        
+        if (accessToken) {
+            setIsUserLoggedIn(true);
+        } else {
+            setIsUserLoggedIn(false);
+        }
+    }, [isUserLoggedIn])
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -38,9 +49,13 @@ const LoginContext = ({children}) => {
                     },
                     cartItems: [],
                     orderedItems: [] 
-                })
+                });
 
                 setUserId(user.uid);
+
+                // Setting cookie.
+                setCookie("accessToken", user.accessToken, 7);
+                setIsUserLoggedIn(true);
             }
             toast.success("User Registered Successfully!");
 
@@ -48,17 +63,16 @@ const LoginContext = ({children}) => {
             setName('');
             setEmail('');
             setPassword('');
-            setIsUserLoggedIn(true);
 
             // Redirect to Home.
             window.history.go(-2);
         } catch (error) {
             if(error.code === "auth/invalid-email" || error.code === "auth/email-already-in-use") {
-                toast.error("This email is already in use by another account.")
+                toast.error("This email is already in use by another account.");
             } else if (error.code === "auth/weak-password") {
-                toast.error("Weak Password! Password should be more than 6 characters.")
+                toast.error("Weak Password! Password should be more than 6 characters.");
             } else {
-                toast.error("An unexpected error occurs.")
+                toast.error("An unexpected error occurs.");
             }
 
             console.log(error.code, "errorrr...");
@@ -74,6 +88,8 @@ const LoginContext = ({children}) => {
 
             toast.success("User Logged Successfully!");
 
+            // Setting cookie. 
+            setCookie("accessToken", user.accessToken, 7);
             setIsUserLoggedIn(true);
 
             // Redirect to Home.
@@ -81,11 +97,11 @@ const LoginContext = ({children}) => {
         } catch (error) {
             console.log(error.code, "codeee...");
             if(error.code === "auth/invalid-credential") {
-                toast.error("Invalid Email Id and Password")
+                toast.error("Invalid Email Id and Password");
             } else if (error.code === "auth/weak-password") {
-                toast.error("Weak Password! Password should be more than 6 characters.")
+                toast.error("Weak Password! Password should be more than 6 characters.");
             } else {
-                toast.error("An unexpected error occurs.")
+                toast.error("An unexpected error occurs.");
             }
             console.log(error.code, "errorrr...");
         }
@@ -96,6 +112,7 @@ const LoginContext = ({children}) => {
             await auth.signOut();
             toast.warning("User Logged Successfully!");
 
+            removeCookie("accessToken");
             setIsUserLoggedIn(false);
 
             // Redirect and refresh the browser.
