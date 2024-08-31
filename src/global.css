@@ -220,5 +220,22 @@ td, th {
 /* Cart Styles */
 .cart-img {
   width: 100px;
+  height: 120px;
   object-fit: contain;
+}
+
+.empty_container {
+  border: 1px solid #333;
+  padding: 2rem;
+}
+
+.cart-icons {
+  font-size: 1.5rem;
+}
+
+.count {
+  padding: 0.7rem 0.5rem;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: 4px;
 }

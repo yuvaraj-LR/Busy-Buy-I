@@ -1,18 +1,21 @@
+import { useProductContextHook } from "../context/product.context";
 
 const CartTableRow = (data) => {
 
-    const {id, title, price, image} = data.data;
-    const {count} = data;
+    const {title, price, image, count} = data.data;
+    const {index} = data
+
+    const {addCart} = useProductContextHook();
 
     return (
         <>
-            <th scope="row">{id}</th>
+            <th scope="row">{index + 1}</th>
             <td><img src={image} alt={title} className="cart-img"/></td>
             <td>{title}</td>
             <td className="text-center">
-                <span><i className="fa-solid fa-circle-minus"></i></span>
-                <span>{count}</span>
-                <span><i className="fa-solid fa-circle-plus"></i></span>
+                <span className="pointer"><i className="fa-solid fa-circle-minus cart-icons"></i></span>
+                <span className="count">{count}</span>
+                <span className="pointer" onClick={() => addCart(data.data)}><i className="fa-solid fa-circle-plus cart-icons"></i></span>
             </td>
             <td>&#x20b9;{price}</td>
         </>

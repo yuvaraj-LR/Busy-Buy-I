@@ -1,6 +1,9 @@
 import CartTableRow from "./CartTableRow";
 
 const CartTable = (data) => {
+
+    console.log(data, "data in cartTable..");
+
     return(
         <>
             <table className="table table-striped">
@@ -14,9 +17,9 @@ const CartTable = (data) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.data.map((data, i) => (
+                    {data.data.cartItem.map((data, i) => (
                         <tr className="cart_table_row" key={i}>
-                            <CartTableRow data={data} />
+                            <CartTableRow data={data} index={i}/>
                         </tr>
                     ))}
                 </tbody>

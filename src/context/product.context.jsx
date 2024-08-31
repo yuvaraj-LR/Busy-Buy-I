@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { doc, setDoc, onSnapshot, getDoc } from "firebase/firestore";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../firebase/firebase.init";
 
 const productContext = createContext();
@@ -14,6 +14,7 @@ const ProductContext = ({children}) => {
     const [productData, setProductData] = useState({});
 
     const fetchUserData = async() => {
+        // Check for user login.
         auth.onAuthStateChanged(async(user) => {
             console.log(user, "userDataa...");
 
@@ -38,10 +39,12 @@ const ProductContext = ({children}) => {
         });
     };
 
+    // For all changes need to fetch the lastest data..
     useEffect(() => {
         fetchUserData();
     }, []);
 
+    // Add to cart.
     const addCart = async (data) => {
         try {
             const { userdata, cartItem, orderedItem } = productData;
@@ -53,9 +56,15 @@ const ProductContext = ({children}) => {
             // If product exists, update the count, else add it to the cart
             if (productIndex !== -1) { // Corrected condition
                 updatedCartItem[productIndex].count += 1;
+                toast.success("Item Count Increased.", {
+                    "theme":"colored",
+                });
             } else {
                 data.count = 1;
                 updatedCartItem.push(data);
+                toast.success("Cart Item Added.",{
+                    "theme":"colored",
+                });
             }
         
             // Update the data.
@@ -64,8 +73,6 @@ const ProductContext = ({children}) => {
                 cartItem: updatedCartItem,
                 orderedItem: orderedItem || []
             });
-        
-            toast.success("Cart Item Added.");
         } catch (error) {
             console.log(error, "error");
             toast.error("Cart Item Failed to add.");
@@ -73,7 +80,7 @@ const ProductContext = ({children}) => {
     };
     
     return (
-        <productContext.Provider value={{addCart}}>
+        <productContext.Provider value={{addCart, productData}}>
             {children}
         </productContext.Provider>
     )

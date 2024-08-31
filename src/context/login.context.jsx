@@ -18,8 +18,8 @@ const LoginContext = ({children}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-    const [userId, setUserId] = useState('');
 
+    // Check for user Login.
     useEffect(() => {
         const accessToken = getCookie("accessToken");
         
@@ -30,6 +30,7 @@ const LoginContext = ({children}) => {
         }
     }, [isUserLoggedIn])
 
+    // SignUp new user.
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
@@ -52,8 +53,6 @@ const LoginContext = ({children}) => {
                 });
                 console.log(user, "userDataa....");
 
-                setUserId(user.uid);
-
                 // Setting cookie.
                 setCookie("accessToken", user.accessToken, 7);
                 setIsUserLoggedIn(true);
@@ -66,7 +65,8 @@ const LoginContext = ({children}) => {
             setPassword('');
 
             // Redirect to Home.
-            window.history.go(-2);
+            // window.history.go(-2);
+            window.location.href = "/";
         } catch (error) {
             if(error.code === "auth/invalid-email" || error.code === "auth/email-already-in-use") {
                 toast.error("This email is already in use by another account.");
@@ -80,12 +80,12 @@ const LoginContext = ({children}) => {
         }
     };
 
+    // Login old user
     const handleSignIn = async (e)  => {
         e.preventDefault();
 
         try {
             const user = await signInWithEmailAndPassword(auth, email, password);
-            setUserId(user.user.uid);
 
             toast.success("User Logged Successfully!");
 
@@ -108,15 +108,17 @@ const LoginContext = ({children}) => {
         }
     }
 
+    // Logout user
     const handleLogout = async() => {
         try {
             await auth.signOut();
             toast.warning("User Logged Successfully!");
 
+            // Remove accessToken cookie.
             removeCookie("accessToken");
             setIsUserLoggedIn(false);
 
-            // Redirect and refresh the browser.
+            // Redirect to Home.
             window.location.href = "/";
         } catch (error) {
             toast.error("An unexpected error occurs.");
@@ -125,7 +127,7 @@ const LoginContext = ({children}) => {
     }
 
     return (
-        <loginContext.Provider value={{ name, setName, email, setEmail, password, setPassword, userId, setUserId, isUserLoggedIn, handleSignUp, handleSignIn, handleLogout }}>
+        <loginContext.Provider value={{ name, setName, email, setEmail, password, setPassword, isUserLoggedIn, handleSignUp, handleSignIn, handleLogout }}>
             {children}
         </loginContext.Provider>
     )
