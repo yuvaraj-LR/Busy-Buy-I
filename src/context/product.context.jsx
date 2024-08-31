@@ -103,9 +103,23 @@ const ProductContext = ({children}) => {
 
         toast("Product removed from cart.")
     }
+
+    const handleClear = async() => {
+        const {userdata, orderedItem} = productData;
+
+        await setDoc(doc(db, "BusyBuy", userdata.uid), {
+            userdata: userdata,
+            cartItem: [],
+            orderedItem: orderedItem || []
+        });
+    }
+    
+    const handleBuyNow = () => {
+
+    }
     
     return (
-        <productContext.Provider value={{ productData, addCart, removeCart}}>
+        <productContext.Provider value={{ productData, addCart, removeCart, handleClear, handleBuyNow}}>
             {children}
         </productContext.Provider>
     )
