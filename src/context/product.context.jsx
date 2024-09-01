@@ -16,6 +16,8 @@ const ProductContext = ({children}) => {
     const [search, setSearch] =  useState('');
     const [filterCata, setFilterCata] = useState([]);
 
+    const [loading, setLoading] = useState(true);
+
     const fetchUserData = async() => {
         // Check for user login.
         auth.onAuthStateChanged(async(user) => {
@@ -53,7 +55,10 @@ const ProductContext = ({children}) => {
 
     // For all changes need to fetch the lastest data..
     useEffect(() => {
-        fetchUserData();
+        setTimeout(() => {
+            fetchUserData();
+            setLoading(false);
+        }, 1000)
     }, []);
 
     // Add to cart.
@@ -172,7 +177,7 @@ const ProductContext = ({children}) => {
     }
     
     return (
-        <productContext.Provider value={{ productData, cartPriceCount, search, filterCata, addCart, removeCart, handleClear, handleBuyNow, setSearch, handleFilter, onClearFilter}}>
+        <productContext.Provider value={{ productData, cartPriceCount, search, filterCata, loading, addCart, removeCart, handleClear, handleBuyNow, setSearch, handleFilter, onClearFilter}}>
             {children}
         </productContext.Provider>
     )

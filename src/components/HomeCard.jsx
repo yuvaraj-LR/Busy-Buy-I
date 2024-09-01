@@ -7,8 +7,6 @@ const HomeCard = (data) => {
     const { isUserLoggedIn, userId } = useLoginContextHook();
     const { addCart, filterCata } = useProductContextHook();
 
-    console.log(filterCata, "filterCatagory...");
-
     const isCategoryFiltered = filterCata.length > 0 ? filterCata.includes(category) : true;
 
     return(

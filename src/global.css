@@ -251,3 +251,7 @@ td, th {
 .text-white {
   color: #fff;
 }
+
+.loader {
+  height: 80vh;
+}
