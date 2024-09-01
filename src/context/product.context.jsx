@@ -86,6 +86,7 @@ const ProductContext = ({children}) => {
         }
     };
 
+    // Remove Cart
     const removeCart = async (data) => {
         const { userdata, cartItem, orderedItem } = productData;
         
@@ -115,6 +116,7 @@ const ProductContext = ({children}) => {
         toast("Product removed from cart.")
     }
 
+    // Clear Cart
     const handleClear = async() => {
         const {userdata, orderedItem} = productData;
 
@@ -125,8 +127,32 @@ const ProductContext = ({children}) => {
         });
     }
     
-    const handleBuyNow = () => {
+    // Buy now
+    const handleBuyNow = async() => {
+        try {
+            const { userdata, cartItem, orderedItem } = productData;
 
+            let date = new Date();
+            let getDate = date.toLocaleDateString();
+
+            const order = {
+                data: getDate,
+                cartItem,
+                cartPriceCount
+            }
+
+            // Update the data.
+            await setDoc(doc(db, "BusyBuy", userdata.uid), {
+                userdata: userdata,
+                cartItem: [],
+                orderedItem: [order, ...orderedItem]
+            });
+
+            toast.success("Order Placed Successfully.")
+        } catch (error) {
+            console.log(error, "error in handle");
+            toast.error("Order not placed successfully.")
+        }
     }
     
     return (

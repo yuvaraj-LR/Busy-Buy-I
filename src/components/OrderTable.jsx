@@ -2,13 +2,13 @@ import CartTableRow from "./CartTableRow";
 
 const OrderTable = (data) => {
     const orderedData = data.data;
-    console.log(orderedData, "orderedDataaaa...");
 
     return (
         <>
-            {orderedData.map(item => {
+            {orderedData.map(item => (
                 <>
-                    <h3>Ordered On: {item.date}</h3>
+                    <h5 className="my-4 text-center" style={{textDecoration: "underline"}}><span className="bold">
+                    Ordered On:</span> {item.data}</h5>
 
                     <table className="table table-striped">
                         <thead>
@@ -20,16 +20,22 @@ const OrderTable = (data) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {item?.cartItem?.map((data, i) => (
+                            {item?.cartItem?.map((data, i) => (
                                 <tr className="cart_table_row" key={i}>
-                                    <CartTableRow data={data} index={i}/>
+                                    <CartTableRow data={data} index={i} fromOrderTable={true}/>
                                 </tr>
-                            ))} */}
+                            ))}
                         </tbody>
                     </table>
 
+                    <div className="text-end w-100">
+                        <h4 className="flex flex_space_between total_count">
+                            <span>TOTAL</span> &nbsp;&nbsp;
+                            <span>&#x20b9;{item.cartPriceCount}</span>
+                        </h4>
+                    </div>
                 </>
-            })}
+            ))}
         </>
     )
 }
