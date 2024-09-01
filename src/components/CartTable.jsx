@@ -1,8 +1,8 @@
 import CartTableRow from "./CartTableRow";
 
-const CartTable = (data) => {
+const CartTable = (data, fromOrderTable) => {
 
-    console.log(data, "data in cartTable..");
+    console.log(data, "Cartdataa...");
 
     return(
         <>
