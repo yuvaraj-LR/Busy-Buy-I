@@ -13,6 +13,7 @@ const useProductContextHook = () => {
 const ProductContext = ({children}) => {
     const [productData, setProductData] = useState({});
     const [cartPriceCount, setCartPriceCount] = useState(0);
+    const [search, setSearch] =  useState('');
 
     const fetchUserData = async() => {
         // Check for user login.
@@ -44,7 +45,6 @@ const ProductContext = ({children}) => {
                     console.error("Error fetching document: ", error);
                 });
             
-                // Remember to clean up the listener when no longer needed
                 return () => unsubscribe();
             }
         });
@@ -154,9 +154,12 @@ const ProductContext = ({children}) => {
             toast.error("Order not placed successfully.")
         }
     }
+
+    // Handle Search.
+    
     
     return (
-        <productContext.Provider value={{ productData, cartPriceCount, addCart, removeCart, handleClear, handleBuyNow}}>
+        <productContext.Provider value={{ productData, cartPriceCount, search, addCart, removeCart, handleClear, handleBuyNow, setSearch}}>
             {children}
         </productContext.Provider>
     )

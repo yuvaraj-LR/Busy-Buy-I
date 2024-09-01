@@ -6,7 +6,7 @@ const CartTable = (data, fromOrderTable) => {
 
     return(
         <>
-            <table className="table table-striped">
+            <table className="table table-striped bordered">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

@@ -10,7 +10,7 @@ const OrderTable = (data) => {
                     <h5 className="my-4 text-center" style={{textDecoration: "underline"}}><span className="bold">
                     Ordered On:</span> {item.data}</h5>
 
-                    <table className="table table-striped">
+                    <table className="table table-striped bordered">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

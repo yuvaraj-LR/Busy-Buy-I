@@ -1,9 +1,11 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useLoginContextHook } from "../context/login.context";
+import { useProductContextHook } from "../context/product.context";
 
 const Navbar = () => {
 
     const {isUserLoggedIn, handleLogout} = useLoginContextHook();
+    const {setSearch} = useProductContextHook();
 
     return(
         <>
@@ -32,8 +34,7 @@ const Navbar = () => {
                                 </li>
                             </ul>
                             <form className="d-flex mx-2" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-secondary" type="submit">Search</button>
+                                <input className="form-control me-2" type="search" placeholder="Search for products" aria-label="Search" onChange={(e) => setSearch(e.target.value)}/>
                             </form>
 
                             {!isUserLoggedIn ? <Link className="btn btn-primary" to="/signin">Login</Link> : <button className="btn btn-outline-danger" onClick={() => handleLogout()}>Logout</button>}
