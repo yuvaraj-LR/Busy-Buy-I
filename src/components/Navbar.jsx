@@ -37,7 +37,7 @@ const Navbar = () => {
                                 <input className="form-control me-2" type="search" placeholder="Search for products" aria-label="Search" onChange={(e) => setSearch(e.target.value)}/>
                             </form>
 
-                            {!isUserLoggedIn ? <Link className="btn btn-primary" to="/signin">Login</Link> : <button className="btn btn-outline-danger" onClick={() => handleLogout()}>Logout</button>}
+                            {!isUserLoggedIn ? <Link className="btn btn-primary" to="/signin">Login</Link> : <div className="flex flex_row flex_center gap-1 btn btn-outline-danger" onClick={() => handleLogout()}><span><i class="fa-solid fa-arrow-right-from-bracket"></i></span><div>Logout</div></div>}
                         </div>
                     </div>
                 </nav>

@@ -6,7 +6,7 @@ const Home = () => {
     return(
         <>
             <div className="my-4 wrapper">
-                <div className="flex flex_row flex_space_between home_head">
+                <div className="flex flex_row flex_center flex_space_between home_head">
                     <h4>List of Products: </h4>
 
                     <Filter />
