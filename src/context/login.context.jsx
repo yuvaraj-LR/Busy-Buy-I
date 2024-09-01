@@ -95,7 +95,7 @@ const LoginContext = ({children}) => {
             setIsUserLoggedIn(true);
 
             // Redirect to Home.
-            window.history.back();
+            window.location.href = "/";
         } catch (error) {
             console.log(error.code, "codeee...");
             if(error.code === "auth/invalid-credential") {
