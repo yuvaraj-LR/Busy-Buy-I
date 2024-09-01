@@ -3,12 +3,19 @@ import { useLoginContextHook } from "../context/login.context";
 import { useProductContextHook } from "../context/product.context";
 
 const HomeCard = (data) => {
-    const { title, price, description, image, rating } = data.data;
+    const { title, price, description, image, rating, category } = data.data;
     const { isUserLoggedIn, userId } = useLoginContextHook();
-    const { addCart } = useProductContextHook();
+    const { addCart, filterCata } = useProductContextHook();
+
+    console.log(filterCata, "filterCatagory...");
+
+    const isCategoryFiltered = filterCata.length > 0 ? filterCata.includes(category) : true;
 
     return(
         <>
+            {
+            isCategoryFiltered ?
+
             <div className="card" >
                 <img src={image} className="card-img-top card_img" alt={title} width="10" />
                 <div className="card-body">
@@ -25,6 +32,7 @@ const HomeCard = (data) => {
                     {!isUserLoggedIn ? <Link className="w-100 btn btn-primary" to="/signin">Add To Cart</Link> : <button className="w-100 btn btn-primary" onClick={() => addCart(data.data, userId)}>Add To Cart</button>}
                 </div>
             </div>
+            : <></>}
         </>
     )
 }

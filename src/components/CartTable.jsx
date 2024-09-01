@@ -1,9 +1,6 @@
 import CartTableRow from "./CartTableRow";
 
-const CartTable = (data, fromOrderTable) => {
-
-    console.log(data, "Cartdataa...");
-
+const CartTable = (data) => {
     return(
         <>
             <table className="table table-striped bordered">

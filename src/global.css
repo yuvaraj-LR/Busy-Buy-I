@@ -167,6 +167,7 @@ td, th {
 
 /* Card Style */
 .home_cards {
+  min-width: 17.99rem;
   max-width: 18rem;
 }
 
@@ -245,4 +246,8 @@ td, th {
   margin: 1.5rem 0;
   border-top: 1px solid #333;
   border-bottom: 1px solid #333;
+}
+
+.text-white {
+  color: #fff;
 }

@@ -14,6 +14,7 @@ const ProductContext = ({children}) => {
     const [productData, setProductData] = useState({});
     const [cartPriceCount, setCartPriceCount] = useState(0);
     const [search, setSearch] =  useState('');
+    const [filterCata, setFilterCata] = useState([]);
 
     const fetchUserData = async() => {
         // Check for user login.
@@ -155,11 +156,23 @@ const ProductContext = ({children}) => {
         }
     }
 
-    // Handle Search.
-    
+    // Handle Filter.
+    const handleFilter = (catagory) => {
+        if (!filterCata.includes(catagory)) {
+            setFilterCata([...filterCata, catagory]);
+        } else {
+            let updatedFilterCata = filterCata.filter(cata => cata !== catagory);
+            setFilterCata(updatedFilterCata);
+        }
+    }
+
+    // clear
+    const onClearFilter = () => {
+        setFilterCata([]);
+    }
     
     return (
-        <productContext.Provider value={{ productData, cartPriceCount, search, addCart, removeCart, handleClear, handleBuyNow, setSearch}}>
+        <productContext.Provider value={{ productData, cartPriceCount, search, filterCata, addCart, removeCart, handleClear, handleBuyNow, setSearch, handleFilter, onClearFilter}}>
             {children}
         </productContext.Provider>
     )
