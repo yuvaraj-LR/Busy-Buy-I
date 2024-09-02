@@ -1,18 +1,19 @@
 import OrderTable from "../components/OrderTable";
+import Empty from "../components/Empty";
 import { useProductContextHook } from "../context/product.context";
 
 const Order = () => {
-
     const { productData } = useProductContextHook();
     const { orderedItem } = productData;
 
-    console.log(orderedItem, "productDataa....");
+    const orderedDataLength = orderedItem && orderedItem.length > 0 ? true : false;
 
     return(
         <>
             <div className="wrapper my-4">
                 <h3>Your Orders: </h3>
-                <OrderTable data={orderedItem} />
+
+                {orderedDataLength ? <OrderTable data={orderedItem} /> : <Empty text="No orders data available." /> }
             </div>
         </>
     )
