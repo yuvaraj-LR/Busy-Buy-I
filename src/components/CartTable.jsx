@@ -14,7 +14,7 @@ const CartTable = (data) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.data.cartItem.map((data, i) => (
+                    {data?.data?.cartItem?.map((data, i) => (
                         <tr className="cart_table_row" key={i}>
                             <CartTableRow data={data} index={i}/>
                         </tr>

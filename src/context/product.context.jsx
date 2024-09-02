@@ -36,7 +36,7 @@ const ProductContext = ({children}) => {
                         console.log(data, "dataa...");
 
                         let priceCount = 0;
-                        data.cartItem.forEach(item => {
+                        data?.cartItem?.forEach(item => {
                             priceCount += (item.count * item.price)
                         });
                         setCartPriceCount(priceCount);

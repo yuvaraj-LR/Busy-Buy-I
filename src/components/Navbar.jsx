@@ -14,7 +14,7 @@ const Navbar = () => {
                     <div className="container-fluid wrapper">
                         <div className="navbar-brand">
                             <NavLink to="/" className="brand-title">
-                                <img src="/logo.png" alt="logo" className="home_logo" />
+                                <img src="./logo-removebg.png" alt="logo" className="home_logo" />
                             </NavLink>
                         </div>
 

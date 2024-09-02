@@ -1,11 +1,11 @@
 import CartTableRow from "./CartTableRow";
 
 const OrderTable = (data) => {
-    const orderedData = data.data;
+    const orderedData = data?.data;
 
     return (
         <>
-            {orderedData.map(item => (
+            {orderedData?.map(item => (
                 <>
                     <h5 className="my-4 text-center" style={{textDecoration: "underline"}}><span className="bold">
                     Ordered On:</span> {item.data}</h5>

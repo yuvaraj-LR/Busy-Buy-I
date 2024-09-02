@@ -10,7 +10,7 @@ const SignUp = () => {
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-6 col-xl-5 col-xxl-5 col-xxxl-4 bg-white p-4 rounded-4 shadow-lg">
                         <div className="d-flex align-items-center pb-3">
-                            <img src="/logo-black.png" alt="Logo" className="login_logo"/>
+                            <img src="./logo-removebg.png" alt="Logo" className="login_logo"/>
                         </div>
                         <p className="text-muted pb-4">Create your account to start using our platform and services.</p>
                         <form onSubmit={(e) => handleSignUp(e)}>
